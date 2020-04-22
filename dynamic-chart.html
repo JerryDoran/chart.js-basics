@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <title>My Dynamic Chart.js</title>
+  </head>
+
+  <body class="bg-secondary">
+    <div class="container">
+      <h1 class="text-center my-4 text-light">Dynamic Charts</h1>
+      <div class="card">
+        <div class="card-body">
+          <button class="btn btn-sm btn-dark" onclick="updateChart()">
+            Update
+          </button>
+          <button class="btn btn-sm btn-dark" onclick="addValue()">
+            +1
+          </button>
+          <canvas id="myChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const oldData = [617594, 181045, 153060, 106519, 105162, 95072];
+      const newData = [900000, 500000, 425000, 250000, 150000, 75000];
+      const oldData1 = [500000, 120000, 200000, 180000, 100000, 75000];
+      const newData1 = [400000, 30000, 250000, 450000, 10000, 75000];
+      const myChart = document.getElementById('myChart').getContext('2d');
+
+      // Global Options
+      Chart.defaults.global.defaultFontFamily = 'sans-serif';
+      Chart.defaults.global.defaultFontSize = 10;
+      Chart.defaults.global.defaultFontColor = '#777';
+
+      let massPopChart = new Chart(myChart, {
+        type: 'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+        data: {
+          labels: [
+            'Boston',
+            'Worcester',
+            'Springfield',
+            'Lowell',
+            'Cambridge',
+            'New Bedford',
+          ],
+          datasets: [
+            {
+              label: 'First Dataset',
+              // backgroundColor: 'cornflowerblue',
+              data: oldData,
+              // backgroundColor: 'dark',
+
+              borderWidth: 1,
+              borderColor: '#777',
+              hoverBorderWidth: 3,
+              hoverBorderColor: '#000',
+            },
+            {
+              label: 'Second Dataset',
+              // backgroundColor: 'crimson',
+              data: oldData1,
+              // backgroundColor: 'dark',
+
+              borderWidth: 1,
+              borderColor: '#777',
+              hoverBorderWidth: 3,
+              hoverBorderColor: '#000',
+            },
+          ],
+        },
+        options: {
+          title: {
+            display: true,
+            text: 'Largest Cities in Massachusetts',
+            fontSize: 20,
+          },
+          legend: {
+            display: true,
+            position: 'right',
+            labels: {
+              fontColor: 'black',
+            },
+          },
+          layout: {
+            padding: {
+              left: 50,
+              right: 0,
+              bottom: 0,
+              top: 0,
+            },
+          },
+          tooltips: {
+            enabled: true,
+
+            // Shows both chart data points
+            mode: 'index',
+          },
+          // scales: {
+          //   yAxes: [
+          //     {
+          //       stacked: true,
+          //     },
+          //   ],
+          //   xAxes: [
+          //     {
+          //       stacked: true,
+          //     },
+          //   ],
+          // },
+        },
+      });
+
+      // const updateChart = () => {
+      //   // Updating the first dataset in the data array
+      //   massPopChart.data.datasets[0].data = [
+      //     900000,
+      //     500000,
+      //     425000,
+      //     250000,
+      //     150000,
+      //     75000,
+      //   ];
+
+      //   massPopChart.update();
+      // };
+
+      function updateChart() {
+        // Updating the first dataset in the data array
+        // massPopChart.data.datasets[0].data = newData;
+        // massPopChart.data.datasets[1].data = newData1;
+
+        massPopChart.data.labels = [
+          'New Jack City',
+          'Emerald City',
+          'Star City',
+          'Metropolis',
+          'Central City',
+        ];
+
+        massPopChart.update();
+      }
+
+      function addValue() {
+        // massPopChart.data.datasets[0].data.shift();
+        massPopChart.data.datasets[0].data.push(800000);
+        massPopChart.data.labels.push('Boston');
+        massPopChart.update();
+      }
+    </script>
+  </body>
+</html>

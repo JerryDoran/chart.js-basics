@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <title>My Chart.js</title>
+  </head>
+  <body class="bg-secondary">
+    <div class="container">
+      <div class="card my-5">
+        <div class="card-body">
+          <canvas id="myChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const myChart = document.getElementById('myChart').getContext('2d');
+
+      // Global Options
+      Chart.defaults.global.defaultFontFamily = 'sans-serif';
+      Chart.defaults.global.defaultFontSize = 10;
+      Chart.defaults.global.defaultFontColor = '#777';
+
+      let massPopChart = new Chart(myChart, {
+        type: 'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+        data: {
+          labels: [
+            'Boston',
+            'Worcester',
+            'Springfield',
+            'Lowell',
+            'Cambridge',
+            'New Bedford',
+          ],
+          datasets: [
+            {
+              label: 'Population',
+              backgroundColor: 'crimson',
+              data: [617594, 181045, 153060, 106519, 105162, 95072],
+              // backgroundColor: 'dark',
+
+              borderWidth: 1,
+              borderColor: '#777',
+              hoverBorderWidth: 3,
+              hoverBorderColor: '#000',
+            },
+            {
+              label: 'Average Salary',
+              data: [145000, 119000, 75000, 55000, 50000, 45000],
+              // backgroundColor: 'dark'
+              backgroundColor: 'cornflowerblue',
+              borderWidth: 1,
+              borderColor: '#777',
+              hoverBorderWidth: 3,
+              hoverBorderColor: '#000',
+            },
+          ],
+        },
+        options: {
+          title: {
+            display: true,
+            text: 'Largest Cities in Massachusetts',
+            fontSize: 20,
+          },
+          legend: {
+            display: true,
+            position: 'right',
+            labels: {
+              fontColor: 'black',
+            },
+          },
+          layout: {
+            padding: {
+              left: 50,
+              right: 0,
+              bottom: 0,
+              top: 0,
+            },
+          },
+          tooltips: {
+            enabled: true,
+
+            // Shows both chart data points
+            mode: 'index',
+          },
+          // scales: {
+          //   yAxes: [
+          //     {
+          //       stacked: true,
+          //     },
+          //   ],
+          //   xAxes: [
+          //     {
+          //       stacked: true,
+          //     },
+          //   ],
+          // },
+        },
+      });
+    </script>
+  </body>
+</html>
