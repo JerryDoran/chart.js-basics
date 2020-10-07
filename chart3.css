@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #eee;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  margin: 1.25rem 0 0.25rem 0;
+}
+
+.chart-container {
+  position: relative;
+  width: 80vw;
+  margin: 10px auto;
+}
+
+canvas {
+  border: 1px solid #333;
+}
