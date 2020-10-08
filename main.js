@@ -15,7 +15,7 @@ const pollData = [
     color: 'rgba(255, 206, 86, 0.5)',
   },
   {
-    option: 'Son Goku',
+    option: 'Flash',
     votes: 5,
     color: 'rgba(75, 192, 192, 0.5)',
   },
@@ -35,6 +35,28 @@ const pollData = [
     color: 'rgba(75, 125, 200, 0.5)',
   },
 ];
+
+const pollForm = document.getElementById('pollForm');
+
+const pollFormSubmit = (e) => {
+  e.preventDefault();
+  const pollOptionInput = pollForm.querySelector(
+    "input[name='pollOptions']:checked"
+  );
+  if (pollOptionInput) {
+    const pollOptionValue = pollOptionInput.value;
+    const pollDataItem = pollData.find(
+      (pollOption) => pollOption.option === pollOptionValue
+    );
+    pollDataItem.votes += 1;
+    pollChart.data.datasets[0].data = pollData.map(
+      (pollOption) => pollOption.votes
+    );
+    pollChart.update();
+  }
+};
+
+pollForm.addEventListener('submit', pollFormSubmit);
 
 Chart.defaults.global.defaultFontFamily = 'sans-serif';
 
